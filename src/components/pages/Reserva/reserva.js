@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import {
   DeleteReserva,
   GetReservas,
   PostReserva,
   PutReserva,
-  GetReservaById,
 } from "../../../services/serviceReserva";
-import "../Reserva/reserva.css";
 import Table from "../../commons/table/table";
+import "../Reserva/reserva.css";
 
 const Reserva = () => {
   const [alterar, setAlterar] = useState(false);
@@ -18,44 +18,43 @@ const Reserva = () => {
   const [habilitar, setHabilitar] = useState(true);
 
   const columns = [
-    { name: "QuartoId", columnType: "Quarto" },
-    { name: "HospedeId", columnType: "Hospede" },
-    { name: "DataCheckin", columnType: "date" },
-    { name: "DataCheckout", columnType: "date" },
-    { name: "Status", columnType: "text" },
+
+    { name: "DataCheckin", columnType: "texto" },
+    { name: "DataCheckout", columnType: "texto" },
+    { name: "Status", columnType: "texto" },
+    { name: "Ação", columnType: "botao" },
   ];
 
   const dataSource =
     listaReservas &&
-    listaReservas?.map((item) => [
-      { name: item.QuartoId },
-      { name: item.HospedeId },
-      { name: item.DataCheckin },
-      { name: item.DataCheckout },
-      { name: item.Status },
+    listaReservas.map((item) => [
+   
+      { name: item.dataCheckin },
+      { name: item.dataCheckout },
+      { name: item.status },
       {
         botoes: [
           {
             botao: (
-              <button
+              <Button
                 onClick={() => CarregarReserva(item)}
+                variant="primary"
+                size="sm"
                 style={{ marginLeft: "5px" }}
-                className="btn btn-sm btn-primary"
-                type="button"
               >
                 Editar
-              </button>
+              </Button>
             ),
           },
           {
             botao: (
-              <button
+              <Button
                 onClick={() => ExcluirReserva(item.ReservaId)}
-                className="btn btn-sm btn-danger"
-                type="button"
+                variant="danger"
+                size="sm"
               >
                 Excluir
-              </button>
+              </Button>
             ),
           },
         ],
@@ -63,12 +62,13 @@ const Reserva = () => {
     ]);
 
   const handleChange = (event, value) => {
-    Reserva[event.target.id] = value;
+    reservas[event.target.id] = value;
     setReservas({ ...reservas });
   };
 
-  const CarregarReserva = async (item) => {
-    setReservas({});
+  const CarregarReserva = (reservas) => {
+    setReservas(reservas);
+    setHabilitar(false);
     setAlterar(true);
   };
 
@@ -94,7 +94,7 @@ const Reserva = () => {
   };
 
   useEffect(() => {
-    GetReservas().then((res) => setListaReservas(res.data));
+    GetReservas().then((res) => {setListaReservas(res.data);console.log(res.data)});
     setSalvou(false);
   }, [salvou]);
 
@@ -103,82 +103,83 @@ const Reserva = () => {
   }, [alterar]);
 
   return (
-    <div style={{ marginLeft: "10px" }}>
-      <div>
-        <h2>Cadastro de Quartos </h2>
+    <Container style={{ marginTop: "20px" }}>
+      <h2>Cadastro de Quartos</h2>
+      <Form>
+        <Row>
+          <Col md={2}>
+            <Form.Group controlId="QuartoId">
+              <Form.Label>QuartoId</Form.Label>
+              <Form.Control
+                readOnly={habilitar}
+                type="text"
+                defaultValue={reservas.quartoId || ""}
+                onChange={(e) => handleChange(e, e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={2}>
+            <Form.Group controlId="HospedeId">
+              <Form.Label>HospedeId</Form.Label>
+              <Form.Control
+                readOnly={habilitar}
+                type="text"
+                defaultValue={reservas.hospedeId || ""}
+                onChange={(e) => handleChange(e, e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={2}>
+            <Form.Group controlId="DataCheckin">
+              <Form.Label>DataCheckin</Form.Label>
+              <Form.Control
+                readOnly={habilitar}
+                type="date"
+                defaultValue={reservas.dataCheckin || ""}
+                onChange={(e) => handleChange(e, e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={2}>
+            <Form.Group controlId="DataCheckout">
+              <Form.Label>DataCheckout</Form.Label>
+              <Form.Control
+                readOnly={habilitar}
+                type="date"
+                defaultValue={reservas.dataCheckout || ""}
+                onChange={(e) => handleChange(e, e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={2}>
+            <Form.Group controlId="Status">
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                readOnly={habilitar}
+                type="text"
+                defaultValue={reservas.status || ""}
+                onChange={(e) => handleChange(e, e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={2} className="d-flex align-items-end">
+            <Button variant="success" onClick={handleSalvar}>
+              {textoBotao}
+            </Button>
+            <Button
+              variant="primary"
+              onClick={NovaReserva}
+              style={{ marginLeft: "5px" }}
+            >
+              Nova Reserva
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+      <div style={{ marginTop: "20px" }}>
+        <Table dados={dataSource} columns={columns} />
       </div>
-      <div style={{ display: "flex" }}>
-        <div style={{ padding: "10px" }} className="col-md">
-          <label>QuartoId</label>
-          <input
-            readOnly={habilitar}
-            type="text"
-            id="QuartoId"
-            value={reservas.QuartoId || ""}
-            onChange={(e) => handleChange(e, e.target.value)}
-            className="form-control"
-          ></input>
-        </div>
-        <div style={{ padding: "10px" }} className="col-md">
-          <label>HospedeId</label>
-          <input
-            readOnly={habilitar}
-            type="text"
-            id="HospedeId"
-            value={reservas.HospedeId || ""}
-            onChange={(e) => handleChange(e, e.target.value)}
-            className="form-control"
-          ></input>
-        </div>
-        <div style={{ padding: "10px" }} className="col-md">
-          <label>DataCheckin</label>
-          <input
-            readOnly={habilitar}
-            type="date"
-            id="DataCheckin"
-            value={reservas.DataCheckin || ""}
-            onChange={(e) => handleChange(e, e.target.value)}
-            className="form-control"
-          ></input>
-        </div>
-        <div style={{ padding: "10px" }} className="col-md">
-          <label>DataCheckout</label>
-          <input
-            readOnly={habilitar}
-            type="date"
-            id="DataCheckout"
-            value={reservas.DataCheckout || ""}
-            onChange={(e) => handleChange(e, e.target.value)}
-            className="form-control"
-          ></input>
-        </div>
-        <div style={{ padding: "10px" }} className="col-md">
-          <label>Status</label>
-          <input
-            readOnly={habilitar}
-            type="text"
-            id="Status"
-            value={reservas.Status || ""}
-            onChange={(e) => handleChange(e, e.target.value)}
-            className="form-control"
-          ></input>
-        </div>
-        <button onClick={handleSalvar} type="button" className="btn-success">
-          {textoBotao}
-        </button>
-        <button
-          onClick={NovaReserva}
-          type="button"
-          style={{ marginLeft: "5px" }}
-          className="btn-primary"
-        >
-          Nova Reserva
-        </button>
-        <div>
-          <Table dados={dataSource} columns={columns}></Table>
-        </div>
-      </div>
-    </div>
+    </Container>
   );
 };
 

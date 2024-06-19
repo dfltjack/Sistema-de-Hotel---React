@@ -22,15 +22,16 @@ const Quarto = () => {
     { name: "Tipo", columnType: "texto" },
     { name: "Preco", columnType: "texto" },
     { name: "Status", columnType: "texto" },
+    { name: "Ação", columnType: "botao" }
   ];
 
   const dataSource =
     listaQuartos &&
-    listaQuartos?.map((item) => [
-      { name: item.Numero },
-      { name: item.Tipo },
-      { name: item.Preco },
-      { name: item.Status },
+    listaQuartos?.map(item => [
+      { name: item.numero },
+      { name: item.tipo },
+      { name: item.preco },
+      { name: item.status },
       {
         botoes: [
           {
@@ -61,14 +62,15 @@ const Quarto = () => {
     ]);
 
   const handleChange = (event, value) => {
-    Quarto[event.target.id] = value;
+    quartos[event.target.id] = value;
     setquartos({ ...quartos });
     //console.log("evt", event, 'val', value);
   };
 
-  const CarregarQuarto = (quarto) => {
-    setquartos({});
-    setAlterar(true);
+  const CarregarQuarto = (quartos) => {
+    setquartos(quartos);
+    setHabilitar(false); 
+    setAlterar(true); 
   };
 
   const ExcluirQuarto = (id) => {
@@ -114,7 +116,7 @@ const Quarto = () => {
               readOnly={habilitar}
               type="text"
               id="Numero"
-              value={quartos.Numero || ""}
+              defaultValue={quartos.numero || ""}
               onChange={(e) => handleChange(e, e.target.value)}
               className="form-control"
             ></input>
@@ -125,7 +127,7 @@ const Quarto = () => {
               readOnly={habilitar}
               type="text"
               id="Tipo"
-              value={quartos.Tipo || ""}
+              defaultValue={quartos.tipo || ""}
               onChange={(e) => handleChange(e, e.target.value)}
               className="form-control"
             ></input>
@@ -136,7 +138,7 @@ const Quarto = () => {
               readOnly={habilitar}
               type="text"
               id="Preco"
-              value={quartos.Preco || ""}
+              defaultValue={quartos.preco || ""}
               onChange={(e) => handleChange(e, e.target.value)}
               className="form-control"
             ></input>
@@ -147,7 +149,7 @@ const Quarto = () => {
               readOnly={habilitar}
               type="text"
               id="Status"
-              value={quartos.Status || ""}
+              defaultValue={quartos.status || ""}
               onChange={(e) => handleChange(e, e.target.value)}
               className="form-control"
             ></input>

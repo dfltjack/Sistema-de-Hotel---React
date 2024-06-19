@@ -9,13 +9,13 @@ export async function GetQuartoById(id){
 }
 
 export async function PostQuarto(quarto){
-    return await Api.post('/quarto/postquarto', quarto);
+    return await Api.post('/quarto/postquartos', quarto);
 }
 
 export async function PutQuarto(quarto){
-    return await Api.put('/quarto/putquarto', quarto);
+    return await Api.put('/quarto/putquartos', quarto);
 }
 
 export async function DeleteQuarto(id){
-    return await Api.delete(`/quarto/deletequarto/${id}`);
+    return await Api.delete(`/quarto/deletequartos/${id}`);
 }

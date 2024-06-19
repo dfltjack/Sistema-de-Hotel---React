@@ -9,11 +9,11 @@ export async function GetReservaById(id){
 }
 
 export async function PostReserva(reserva){
-    return await Api.post('/reserva/postreserva', reserva);
+    return await Api.post('/reserva/postreservas', reserva);
 }
 
 export async function PutReserva(reserva){
-    return await Api.put('/reserva/putreserva', reserva);
+    return await Api.put('/reserva/putreservas', reserva);
 }
 
 export async function DeleteReserva(id){
