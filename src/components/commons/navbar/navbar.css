@@ -1,0 +1,15 @@
+.navbar{
+    font-style: italic;
+    font-size: 15px;
+    color: white ;
+    text-align: center;
+    
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(252, 252, 254, 0.389);
+}
+
+.navbar-light .navbar-brand {
+    color: rgba(252, 252, 254, 0.389);
+}

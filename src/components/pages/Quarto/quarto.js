@@ -104,7 +104,7 @@ const Quarto = () => {
   }, [alterar]);
 
   return (
-    <div style={{ marginLeft: "10px" }}>
+    <div style={{ marginLeft: "10px" }} class="div-img">
       <div>
         <h2>Cadastro de Quartos</h2>
       </div>

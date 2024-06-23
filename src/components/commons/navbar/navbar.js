@@ -5,11 +5,12 @@ import Home from "../../pages/Home/home";
 import Hospede from "../../pages/Hospede/hospede";
 import Quarto from "../../pages/Quarto/quarto";
 import Reserva from "../../pages/Reserva/reserva";
+import "../navbar/navbar.css"
 
 const NavBarMain = () => {
     return (
         <>
-            <Navbar bg="light" expand="lg" className="mb-3">
+            <Navbar bg="dark" expand="lg">
                 <Container>
                     <Navbar.Brand as={Link} to="/">Hotel Management</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

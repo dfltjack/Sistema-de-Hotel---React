@@ -1,14 +1,18 @@
 import React from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "../Home/home.css"
 
 const Home = () => {
     const navigate = useNavigate();
 
-    return (
+    return (        
         <div className="container mt-4">
             <h1>Home</h1>
-            <p>Bem-vindo ao sistema de gerenciamento de hotel. Aqui você pode gerenciar hóspedes, quartos e reservas de forma eficiente.</p>
+            <div>
+                <p>Bem-vindo ao sistema de gerenciamento de hotel. Aqui você pode gerenciar hóspedes, quartos e reservas de forma eficiente.</p>
+            </div>
+            
             <Row className="mt-4">
                 <Col>
                     <Card>
@@ -44,7 +48,7 @@ const Home = () => {
                     </Card>
                 </Col>
             </Row>
-        </div>
+        </div>        
     );
 }
 

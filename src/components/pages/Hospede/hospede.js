@@ -83,7 +83,7 @@ const Hospede = () => {
   }, [alterar]); 
   
   return (
-    <div style={{ marginLeft: "10px" }}>
+    <div style={{ marginLeft: "10px" }} className="div-hosp">
       <div>
         <h2>Cadastro de Hóspedes</h2>
       </div>
@@ -97,12 +97,12 @@ const Hospede = () => {
                 id="hospedeId"
                 value={hospedes.hospedeId || ""}
                 onChange={(e) => handleChange(e, e.target.value)}
-                className="form-control"
+                // className="form-control"
               ></input>
           </div> */}
           <div style={{ padding: "10px" }} className="col-md">
             <label>Nome</label>
-            <input
+            <input 
               readOnly={habilitar}
               type="text"
               id="Nome"
@@ -111,11 +111,11 @@ const Hospede = () => {
               className="form-control"
             ></input>
           </div>
-          <div>
+          <div class="form-control-email">
             <label>Email</label>
             <input
               readOnly={habilitar}
-              type="email"
+              type="text"
               id="Email"
               defaultValue={hospedes.email || ""}
               onChange={(e) => handleChange(e, e.target.value)}
@@ -297,7 +297,7 @@ export default Hospede;
 //               id="hospedeId"
 //               value={hospedes.hospedeId || ""}
 //               onChange={(e) => handleChange(e, e.target.value)}
-//               className="form-control"
+// //               className="form-control"
 //             />
 //           </div>
 //           <div>
@@ -308,7 +308,7 @@ export default Hospede;
 //               id="Nome"
 //               value={hospedes.Nome || ""}
 //               onChange={(e) => handleChange(e, e.target.value)}
-//               className="form-control"
+// //               className="form-control"
 //             />
 //           </div>
 //           <div>
@@ -319,7 +319,7 @@ export default Hospede;
 //               id="Email"
 //               value={hospedes.Email || ""}
 //               onChange={(e) => handleChange(e, e.target.value)}
-//               className="form-control"
+// //               className="form-control"
 //                 />
 //               </div>
 //               <div>
@@ -330,7 +330,7 @@ export default Hospede;
 //                   id="DocumentoIdentificacao"
 //                   value={hospedes.DocumentoIdentificacao || ""}
 //                   onChange={(e) => handleChange(e, e.target.value)}
-//                   className="form-control"
+// //                   className="form-control"
 //                 />
 //               </div>
 //             </div>
@@ -468,7 +468,7 @@ export default Hospede;
 // //               id="Nome"
 // //               value={hospedes.Nome || ""}
 // //               onChange={(e) => handleChange(e, e.target.value)}
-// //               className="form-control"
+// // //               className="form-control"
 // //             ></input>
 // //           </div>
 // //           <div>
@@ -479,7 +479,7 @@ export default Hospede;
 // //               id="Email"
 // //               value={hospedes.Email || ""}
 // //               onChange={(e) => handleChange(e, e.target.value)}
-// //               className="form-control"
+// // //               className="form-control"
 // //             ></input>
 // //           </div>
 // //           <div>
@@ -490,7 +490,7 @@ export default Hospede;
 // //               id="Telefone"
 // //               value={hospedes.Telefone || ""}
 // //               onChange={(e) => handleChange(e, e.target.value)}
-// //               className="form-control"
+// // //               className="form-control"
 // //             ></input>
 // //           </div>
 // //           <div>
@@ -501,7 +501,7 @@ export default Hospede;
 // //               id="DocumentoIdentificacao"
 // //               value={hospedes.DocumentoIdentificacao || ""}
 // //               onChange={(e) => handleChange(e, e.target.value)}
-// //               className="form-control"
+// // //               className="form-control"
 // //             ></input>
 // //           </div>
 // //         </div>

@@ -103,8 +103,9 @@ const Reserva = () => {
   }, [alterar]);
 
   return (
+    <div class="div-res">
     <Container style={{ marginTop: "20px" }}>
-      <h2>Cadastro de Quartos</h2>
+      <h2>Cadastro de Reservas</h2>
       <Form>
         <Row>
           <Col md={2}>
@@ -180,6 +181,7 @@ const Reserva = () => {
         <Table dados={dataSource} columns={columns} />
       </div>
     </Container>
+    </div>
   );
 };
 

@@ -2,3 +2,22 @@ label {
     font-size: large;
     
 }
+.div-img {
+    background-image: url("quarto.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    position: fixed; /* Use fixed to ensure the image covers the viewport */
+    top: 70;
+    left: -3mm;
+    right: 50;
+    height: 100%;
+    width: 100%;
+    margin: auto; /* Remove margin */
+    border: black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+}
